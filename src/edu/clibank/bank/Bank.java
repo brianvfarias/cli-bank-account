@@ -48,4 +48,20 @@ public class Bank {
     this.agency = agency;
   }
 
+  public int withdraw(double amount) {
+    if (this.funds == 0 || this.funds < amount) {
+      System.out.println("You don't have enough funds to make this transaction");
+      return 0;
+    }
+    this.funds = this.funds - amount;
+    System.out.println("You have withdrawn " + amount + "!" + "Your current funds are " + this.funds + ".");
+    return 1;
+  }
+
+  public int deposit(double amount) {
+    this.funds = this.funds + amount;
+    System.out.println("You have deposited " + amount + "!" + "Your current funds are " + this.funds + ".");
+    return 1;
+  }
+
 }

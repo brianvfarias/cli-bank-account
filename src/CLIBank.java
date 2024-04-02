@@ -22,19 +22,26 @@ public class CLIBank {
         System.out.println("Your account info is:");
         System.out.println("Agency: " + bank.getAgency());
         System.out.println("Account number: " + bank.getAccountNumber());
-        System.out.println("Do you want to make any other transaction? [Y/n]");
-        String moreTransations = scan.next();
-        if (moreTransations.toLowerCase().equals("y")) {
-            System.out.println("Type the transaction you want to do: \n 1- Deposit \n 2- Withdraw");
+        String moreTransations = "y";
+        while (moreTransations.toLowerCase().equals("y")) {
+            System.out.println("Do you want to make any other transaction? [Y/n]");
+            moreTransations = scan.next();
+            if (!moreTransations.toLowerCase().equals("y"))
+                break;
+            System.out.println("Type the transaction you want to do: \n1- Deposit \n2- Withdraw");
             int transaction = scan.nextInt();
             if (transaction > 2 || transaction < 1) {
                 System.out.println("Not a valid transaction. ");
+            } else if (transaction == 1) {
+                System.out.println("Please, insert the amout you wish to deposit.");
+                double amount = scan.nextDouble();
+                bank.deposit(amount);
             } else {
-                System.out.println("Valid transaction");
+                System.out.println("Please, insert the amout you wish to withdraw.");
+                double amount = scan.nextDouble();
+                bank.withdraw(amount);
             }
-            scan.close();
-        } else {
-            scan.close();
         }
+        scan.close();
     }
 }
